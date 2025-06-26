@@ -5,12 +5,15 @@ import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), dts({ include: ['lib'] })],
+    plugins: [react(), dts({ include: ["lib"], insertTypesEntry: true })],
     build: {
         copyPublicDir: false,
         lib: {
             entry: resolve(__dirname, 'lib/main.ts'),
-            formats: ['es']
+            formats: ['es'],
+        },
+        rollupOptions: {
+            external: ['react,']
         }
     }
 })

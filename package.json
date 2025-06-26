@@ -1,8 +1,11 @@
 {
   "name": "alert-component-lib",
-  "private": true,
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "main": "dist/alert-component-lib.js",
+  "types": "indext.d.ts",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
@@ -10,10 +13,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "@eslint/js": "^9.29.0",
     "@types/node": "^24.0.4",
     "@types/react": "^19.1.8",
@@ -27,5 +30,9 @@
     "typescript-eslint": "^8.34.1",
     "vite": "^7.0.0",
     "vite-plugin-dts": "^4.5.4"
+  },
+  "peerDependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
