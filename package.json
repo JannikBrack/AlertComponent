@@ -1,10 +1,10 @@
 {
   "name": "alert-component-lib",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "main": "dist/alert-component-lib.js",
-  "types": "indext.d.ts",
+  "types": "index.d.ts",
   "files": [
     "dist",
     "LICENSE"
