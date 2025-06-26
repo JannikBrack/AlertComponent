@@ -6,7 +6,8 @@
   "main": "dist/alert-component-lib.js",
   "types": "indext.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE"
   ],
   "scripts": {
     "dev": "vite",
