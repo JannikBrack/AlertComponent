@@ -16,7 +16,7 @@ jobs:
           cache: npm
           registry-url: https://registry.npmjs.org
       - name: Install dependencies
-        run: npm install
+        run: npm install --frozen-lockfile
       - name: Publish 🚀
         shell: bash
         run: npm publish --access public --no-git-che
