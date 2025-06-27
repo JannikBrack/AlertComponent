@@ -1,11 +1,13 @@
 {
   "name": "@fluffys/alertcomponent",
   "private": false,
-  "version": "0.0.14",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/alert-component-lib.js",
   "types": "index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "vite",
