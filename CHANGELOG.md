@@ -1,6 +1,18 @@
 # Change Log
 
+## [v.1.0.4]
+
+## Changed
+- fix package.json main file
+
+## [v.1.0.3]
+### rebuild
+
+## [v.1.0.2]
+### rebuild
+
 ## [v.1.0.1]
+### rebuild
 
 ## Changed
 - update auto-publish.yml add build process
