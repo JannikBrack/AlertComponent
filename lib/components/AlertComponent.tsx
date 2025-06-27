@@ -1,5 +1,5 @@
 import {Alert, Snackbar} from "@mui/material";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 type success = "success";
 type warning = "warning";
@@ -40,15 +40,19 @@ export function AlertComponent(props: AlertProps) {
     const handleClose = () => {
         setSnackbarOpen(false);
     };
-    const triggerAlert = new BroadcastChannel("triggerAlert");
-
-    triggerAlert.onmessage = (message: MessageEvent<AlertMessage>) => {
-        const data = message.data;
-        if (props.origin === data.destination) {
-            setSnackbarOpen(true);
-            setMessageContent(data);
-        }
-    }
+    useEffect(() => {
+        const triggerAlert = new BroadcastChannel("triggerAlert");
+        triggerAlert.onmessage = (message: MessageEvent<AlertMessage>) => {
+            const data = message.data;
+            if (props.origin === data.destination) {
+                setSnackbarOpen(true);
+                setMessageContent(data);
+            }
+        };
+        return () => {
+            triggerAlert.close();
+        };
+    }, [props.origin]);
     return (
         <div style={{position: "relative", width: "100%"}}>
             <Snackbar
