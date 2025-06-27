@@ -21,9 +21,11 @@ export interface AlertMessage {
 
 /**
  * @prop origin is used to determine the window the alert should be visible
- */
+ * @prop ignoreParentComponentPosition If true, the component will always open centered at the top of the screen and will not be attached to the component.
+ * */
 interface AlertProps {
     origin: string;
+    ignoreParentComponentPosition?: boolean;
 }
 
 /**
@@ -54,7 +56,7 @@ export function AlertComponent(props: AlertProps) {
         };
     }, [props.origin]);
     return (
-        <div style={{position: "relative", width: "100%"}}>
+        <div style={{position: props.ignoreParentComponentPosition ? "absolute" : "relative", width: "100%"}}>
             <Snackbar
                 open={snackbarOpen}
                 autoHideDuration={messageContent?.duration}

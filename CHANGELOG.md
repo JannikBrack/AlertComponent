@@ -1,5 +1,10 @@
 # Change Log
 
+## [v.1.0.12]
+
+## Added
+- add property ignoreParentComponentPosition to AlertComponent
+
 ## [v.1.0.11]
 
 ## Fixed
