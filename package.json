@@ -1,9 +1,9 @@
 {
   "name": "@fluffys/alertcomponent",
   "private": false,
-  "version": "1.0.3",
+  "version": "1.0.4",
   "type": "module",
-  "entrypoint": "dist/alertcomponent.js",
+  "main": "dist/alertcomponent.js",
   "types": "index.d.ts",
   "files": [
     "dist"
