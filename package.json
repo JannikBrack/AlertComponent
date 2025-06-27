@@ -5,10 +5,8 @@
   "type": "module",
   "main": "dist/alert-component-lib.js",
   "types": "index.d.ts",
-  "files": [
-    "dist",
-    "LICENSE"
-  ],
+  "files": ["dist"],
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig-build.json && vite build",
