@@ -1,8 +1,16 @@
 # Change Log
 
-## [v.1.0.4]
+## [v.1.0.11]
 
-## Changed
+## Fixed
+- fix rollupOptions in vite.config.ts that led to an invalid hook call.
+
+## [v.1.0.4] - [v.1.0.10]
+
+tried to find build error
+
+## [v.1.0.4]
+## Fixed
 - fix package.json main file
 
 ## [v.1.0.3]
