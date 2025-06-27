@@ -1,69 +1,82 @@
-# React + TypeScript + Vite
+# AlertComponent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Installation
 
-Currently, two official plugins are available:
+You can add this package to your project by using these options:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### yarn:
+```bash
+  yarn add @fluffys/alertcomponent
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+#### npm:
+```bash
+  npm i @fluffys/alertcomponent
 ```
+
+## Usage
+
+Add the AlertComponent to the component of your choice and set an origin.
+```tsx
+import {AlertComponent} from "@fluffys/alertcomponent";
+
+function App() {
+    
+    return (
+        <>
+            <AlertComponent origin={"Main-Window"}/>
+        </>
+    )
+}
+```
+
+To send a message to an AlertComponent, you can import and use the MessengerHelper helper tool.
+
+```tsx
+import {MessengerHelper} from "@fluffys/alertcomponent";
+//...
+const messengerHelper = new MessengerHelper();
+
+messengerHelper.sendMessage({
+    message: "Hello World",
+    severity: "success",
+    duration: 1000,
+    destination: "Main-Window"
+})
+//...
+```
+
+## Important to know
+
+This is the base layout of a message:
+
+- __message:__ is containing alert content
+- __severity:__ contains the type of alert
+- __duration:__ contains number of seconds in milliseconds (is not needed)
+- __origin:__ contains string where it should appear __(must match with any AlertComponent origin)__
+```tsx
+export interface AlertMessage {
+    message: string;
+    severity: "success" | "warning" | "error" | "info";
+    duration?: number | undefined;
+    destination: string;
+}
+```
+
+## Optional Usage
+
+The Message helper is basically just a broadcast channel. As log as you name it "triggerAlert" and respect the message layout, it will work.
+```ts
+channel = new BroadcastChannel("triggerAlert");
+
+channel.postMessage({
+    message: "Hello World",
+    severity: "success",
+    duration: 1000,
+    destination: "Main-Window"
+});
+```
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
