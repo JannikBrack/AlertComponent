@@ -1,7 +1,7 @@
 {
   "name": "@fluffys/alertcomponent",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.13",
   "type": "module",
   "main": "dist/alert-component-lib.js",
   "types": "index.d.ts",
