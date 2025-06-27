@@ -1,5 +1,10 @@
 # Change Log
 
+## [v.1.0.1]
+
+## Changed
+- update auto-publish.yml add build process
+
 ## [v.1.0.0]
 
 ## Added
