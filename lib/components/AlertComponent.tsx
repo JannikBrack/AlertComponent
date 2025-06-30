@@ -56,7 +56,7 @@ export function AlertComponent(props: AlertProps) {
         };
     }, [props.origin]);
 
-    if (props.ignoreParentComponentPosition)
+    if (!props.ignoreParentComponentPosition)
         return (
             <div style={{position: "relative", width: "100%"}}>
                 <Snackbar
