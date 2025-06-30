@@ -55,30 +55,56 @@ export function AlertComponent(props: AlertProps) {
             triggerAlert.close();
         };
     }, [props.origin]);
-    return (
-        <div style={{position: props.ignoreParentComponentPosition ? "absolute" : "relative", width: "100%"}}>
-            <Snackbar
-                open={snackbarOpen}
-                autoHideDuration={messageContent?.duration}
-                onClose={handleClose}
-                anchorOrigin={{vertical: "top", horizontal: "center"}}
-                sx={{
-                    position: "absolute"
-                }}
-            >
-                <Alert
-                    severity={messageContent.severity}
+
+    if (props.ignoreParentComponentPosition)
+        return (
+            <div style={{position: "relative", width: "100%"}}>
+                <Snackbar
+                    open={snackbarOpen}
+                    autoHideDuration={messageContent?.duration}
                     onClose={handleClose}
+                    anchorOrigin={{vertical: "top", horizontal: "center"}}
                     sx={{
-                        boxShadow: "0px 4px 20px rgba(0,0,0,0.5)",
-                        border: "1px solid black",
-                        borderRadius: "10px",
-                        fontWeight: "bold",
+                        position: "absolute"
                     }}
                 >
-                    {messageContent.message}
-                </Alert>
-            </Snackbar>
-        </div>
-    )
+                    <Alert
+                        severity={messageContent.severity}
+                        onClose={handleClose}
+                        sx={{
+                            boxShadow: "0px 4px 20px rgba(0,0,0,0.5)",
+                            border: "1px solid black",
+                            borderRadius: "10px",
+                            fontWeight: "bold",
+                        }}
+                    >
+                        {messageContent.message}
+                    </Alert>
+                </Snackbar>
+            </div>
+        )
+    else return (
+        <Snackbar
+            open={snackbarOpen}
+            autoHideDuration={messageContent?.duration}
+            onClose={handleClose}
+            anchorOrigin={{vertical: "top", horizontal: "center"}}
+            sx={{
+                position: "absolute"
+            }}
+        >
+            <Alert
+                severity={messageContent.severity}
+                onClose={handleClose}
+                sx={{
+                    boxShadow: "0px 4px 20px rgba(0,0,0,0.5)",
+                    border: "1px solid black",
+                    borderRadius: "10px",
+                    fontWeight: "bold",
+                }}
+            >
+                {messageContent.message}
+            </Alert>
+        </Snackbar>
+    );
 }
