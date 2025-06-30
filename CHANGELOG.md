@@ -1,5 +1,10 @@
 # Change Log
 
+## [v.1.0.13] - [v.1.0.16]
+
+## Fixed
+- fix functionality of ignoreParentComponentPosition
+
 ## [v.1.0.12]
 
 ## Added
