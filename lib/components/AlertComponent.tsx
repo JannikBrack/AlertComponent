@@ -1,5 +1,8 @@
 import {Alert, Snackbar} from "@mui/material";
 import {useEffect, useState} from "react";
+import * as React from "react";
+import type {SxProps} from "@mui/system";
+import type {Theme} from "@mui/material/styles";
 
 type success = "success";
 type warning = "warning";
@@ -10,22 +13,28 @@ type info = "info";
  * @prop message is containing alert content
  * @prop severity contains the type of alert
  * @prop duration contains number of seconds in milliseconds
- * @prop origin contains string where it should appear
+ * @prop destination contains string where it should appear
+ * @prop customIcon optional custom icon to override the default severity icon
  */
 export interface AlertMessage {
     message: string;
     severity: success | warning | error | info;
     duration?: number | undefined;
     destination: string;
+    customIcon?: React.ReactNode;
 }
 
 /**
  * @prop origin is used to determine the window the alert should be visible
  * @prop ignoreParentComponentPosition If true, the component will always open centered at the top of the screen and will not be attached to the component.
+ * @prop sx optional custom styling for the Alert component
+ * @prop icon optional custom icon to override the default severity icon
  * */
-interface AlertProps {
+interface AlertComponentProps{
     origin: string;
     ignoreParentComponentPosition?: boolean;
+    sx?: SxProps<Theme>;
+    icon: React.ReactNode;
 }
 
 /**
@@ -33,7 +42,7 @@ interface AlertProps {
  * Each message needs a destination. Each implementation of the AlertComponent requires an origin.
  * This is used to determine where the message should be displayed.
  */
-export function AlertComponent(props: AlertProps) {
+export function AlertComponent(props: AlertComponentProps) {
     const [snackbarOpen, setSnackbarOpen] = useState<boolean>(false);
     const [messageContent, setMessageContent] = useState<AlertMessage>({
         destination: "", message: "", severity: "success"
@@ -42,6 +51,7 @@ export function AlertComponent(props: AlertProps) {
     const handleClose = () => {
         setSnackbarOpen(false);
     };
+
     useEffect(() => {
         const triggerAlert = new BroadcastChannel("triggerAlert");
         triggerAlert.onmessage = (message: MessageEvent<AlertMessage>) => {
@@ -69,6 +79,7 @@ export function AlertComponent(props: AlertProps) {
                     }}
                 >
                     <Alert
+                        icon={messageContent?.customIcon ?? props?.icon}
                         severity={messageContent.severity}
                         onClose={handleClose}
                         sx={{
@@ -76,6 +87,7 @@ export function AlertComponent(props: AlertProps) {
                             border: "1px solid black",
                             borderRadius: "10px",
                             fontWeight: "bold",
+                            ...props?.sx,
                         }}
                     >
                         {messageContent.message}
@@ -94,6 +106,7 @@ export function AlertComponent(props: AlertProps) {
             }}
         >
             <Alert
+                icon={messageContent?.customIcon ?? props?.icon}
                 severity={messageContent.severity}
                 onClose={handleClose}
                 sx={{
@@ -101,6 +114,7 @@ export function AlertComponent(props: AlertProps) {
                     border: "1px solid black",
                     borderRadius: "10px",
                     fontWeight: "bold",
+                    ...props?.sx,
                 }}
             >
                 {messageContent.message}

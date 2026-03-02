@@ -1,5 +1,12 @@
 # Change Log
 
+## [v.1.0.17]
+
+## Added
+- Added `customIcon` property to `AlertMessage` interface to allow custom icons per message
+- Added `icon` property to `AlertComponentProps` to set default icon for all alerts
+- Added `sx` property to `AlertComponentProps` for custom MUI styling
+
 ## [v.1.0.13] - [v.1.0.16]
 
 ## Fixed
